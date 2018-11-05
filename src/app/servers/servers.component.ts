@@ -7,39 +7,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServersComponent implements OnInit {
 
-  allowNewServer = false;
-  userNameIsNotEmpty = true;
-  serverCreationStatus = 'No server was created';
-  serverName = 'TestServerName';
-  userName = '';
+
+
+  clickCount = 0;
+  displaySecretMessage = false;
+  secretMessageIsAbove5 = false;
+  secretMessage = '';
+  secretMessageTimeStamps = [];
 
   constructor() {
-    setTimeout(() => {
-      this.allowNewServer = true;
-    }, 2000);
+
   }
 
   ngOnInit() {
   }
 
-  onUpdateUserName() {
-    console.log("Hello World");
-    if (this.userName.length > 0) {
-      this.userNameIsNotEmpty = false;
+  onDisplaySecret() {
+
+
+    this.addTimeStamp();
+    this.secretMessage = 'Money';
+    this.displaySecretMessage = true;
+    this.clickCount++;
+  }
+
+  addTimeStamp() {
+
+    var date = new Date();
+    var timestamp = 'timestamp: ' + date.getTime();
+    this.secretMessageTimeStamps.push(timestamp);
+  }
+
+
+
+
+  onToggleSecretMessage() {
+
+    if (this.secretMessage != '') {
+      this.displaySecretMessage = !this.displaySecretMessage;
     }
   }
 
-  resetUserName() {
-    this.userName = '';
-    this.userNameIsNotEmpty = true;
-  }
-  onUpdateServerName(event: Event) {
-    this.serverName = (<HTMLInputElement>event.target).value;
-  }
 
-  onCreateServer() {
-
-    this.serverCreationStatus = 'Server was created';
-  }
 
 }

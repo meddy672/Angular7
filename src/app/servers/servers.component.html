@@ -1,17 +1,4 @@
-<!-- Event Binding -->
-<!-- <input class="form-control" type="text" (input)="onUpdateServerName($event)">
-<p>{{serverName}}</p> -->
-
-<!-- Two Way Binding -->
-<!-- <input class="form-control" type="text" [(ngModel)]="serverName">
-<p>{{serverName}}</p> -->
-
-<!-- <button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">Add Server</button>
-<br>
-{{ serverCreationStatus }}
-<app-server></app-server>
-<app-server></app-server> -->
-
-<input class="form-control" type="text" [(ngModel)]="userName" (input)="onUpdateUserName()">
-<p>I want my user name to be -- {{userName}} --.</p>
-<button class="btn btn-warning" [disabled]="userNameIsNotEmpty" (click)="resetUserName()">Reset</button>
+<button class="btn btn-primary" (click)="onDisplaySecret()">Display Details</button>
+<button class="btn btn-success" (click)="onToggleSecretMessage()">{{'Toggle Button'}}</button>
+<p *ngIf="displaySecretMessage"> Secret Message: {{secretMessage}}</p>
+<p *ngFor="let timeStamp of secretMessageTimeStamps; let i = index" [ngStyle]="{ backgroundColor: i >= 4 ? 'red' : 'blue' }">{{timeStamp}}</p>
